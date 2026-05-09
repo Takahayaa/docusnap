@@ -78,7 +78,7 @@ export default function App() {
 
       <Hero onGetStarted={() => document.getElementById('converter')?.scrollIntoView({ behavior: 'smooth' })} />
 
-      <div style={{ padding: '40px 48px' }}>
+      <div className="px-4 py-10 sm:px-12">
       <div className="max-w-[1240px] mx-auto space-y-4">
 
         {/* Upload */}

@@ -1,46 +1,70 @@
+import { useState, useEffect } from 'react'
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
+  return isMobile
+}
+
 export function Hero({ onGetStarted }) {
+  const isMobile = useIsMobile()
+
   return (
     <section style={{
-      minHeight: '100vh',
+      minHeight: isMobile ? 'auto' : '100vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       overflow: 'hidden',
-      padding: '48px',
+      padding: isMobile ? '40px 20px 48px' : '48px',
       position: 'relative',
       background: '#ffffff',
     }}>
       {/* Background blob */}
-      <div style={{
-        position: 'absolute',
-        width: '680px',
-        height: '580px',
-        borderRadius: '48% 52% 45% 55%',
-        background: '#f5f6fa',
-        right: '-60px',
-        top: '60px',
-        zIndex: 0,
-      }} />
+      {!isMobile && (
+        <div style={{
+          position: 'absolute',
+          width: '680px',
+          height: '580px',
+          borderRadius: '48% 52% 45% 55%',
+          background: '#f5f6fa',
+          right: '-60px',
+          top: '60px',
+          zIndex: 0,
+        }} />
+      )}
 
       {/* Decorative dots */}
-      <div style={{ position: 'absolute', width: 10, height: 10, borderRadius: 999, background: '#b0b4c8', left: '48%', bottom: 130, zIndex: 2 }} />
-      <div style={{ position: 'absolute', width: 10, height: 10, borderRadius: 999, background: '#b0b4c8', right: '4%', bottom: 90, zIndex: 2 }} />
+      {!isMobile && (
+        <>
+          <div style={{ position: 'absolute', width: 10, height: 10, borderRadius: 999, background: '#b0b4c8', left: '48%', bottom: 130, zIndex: 2 }} />
+          <div style={{ position: 'absolute', width: 10, height: 10, borderRadius: 999, background: '#b0b4c8', right: '4%', bottom: 90, zIndex: 2 }} />
+        </>
+      )}
 
       {/* Sparkles */}
-      <svg style={{ position: 'absolute', width: 36, height: 36, color: '#e8440a', opacity: 0.25, left: '49%', top: 100, zIndex: 2 }} viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-        <path d="M24 2l5.7 16.3L46 24l-16.3 5.7L24 46l-5.7-16.3L2 24l16.3-5.7L24 2z" />
-      </svg>
-      <svg style={{ position: 'absolute', width: 28, height: 28, color: '#e8440a', opacity: 0.18, right: '30%', top: 195, zIndex: 2 }} viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
-        <path d="M24 2l5.7 16.3L46 24l-16.3 5.7L24 46l-5.7-16.3L2 24l16.3-5.7L24 2z" />
-      </svg>
+      {!isMobile && (
+        <>
+          <svg style={{ position: 'absolute', width: 36, height: 36, color: '#e8440a', opacity: 0.25, left: '49%', top: 100, zIndex: 2 }} viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
+            <path d="M24 2l5.7 16.3L46 24l-16.3 5.7L24 46l-5.7-16.3L2 24l16.3-5.7L24 2z" />
+          </svg>
+          <svg style={{ position: 'absolute', width: 28, height: 28, color: '#e8440a', opacity: 0.18, right: '30%', top: 195, zIndex: 2 }} viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
+            <path d="M24 2l5.7 16.3L46 24l-16.3 5.7L24 46l-5.7-16.3L2 24l16.3-5.7L24 2z" />
+          </svg>
+        </>
+      )}
 
       {/* Hero grid */}
       <div style={{
         width: 'min(100%, 1240px)',
-        minHeight: 680,
+        minHeight: isMobile ? 'auto' : 680,
         display: 'grid',
-        gridTemplateColumns: '0.9fr 1.1fr',
-        gap: 56,
+        gridTemplateColumns: isMobile ? '1fr' : '0.9fr 1.1fr',
+        gap: isMobile ? 0 : 56,
         alignItems: 'center',
         position: 'relative',
         zIndex: 3,
@@ -48,45 +72,46 @@ export function Hero({ onGetStarted }) {
         {/* ── Left copy ── */}
         <div>
           {/* Logo mark */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <div style={{
-              width: 64,
-              height: 64,
-              borderRadius: 16,
+              width: isMobile ? 48 : 64,
+              height: isMobile ? 48 : 64,
+              borderRadius: isMobile ? 12 : 16,
               background: 'linear-gradient(135deg, #e8440a, #b83208)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               boxShadow: '0 18px 36px rgba(232,68,10,0.22)',
+              flexShrink: 0,
             }}>
               <div style={{
-                width: 44,
-                height: 44,
-                borderRadius: 11,
+                width: isMobile ? 32 : 44,
+                height: isMobile ? 32 : 44,
+                borderRadius: isMobile ? 8 : 11,
                 background: 'white',
                 position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-                <div style={{ position: 'absolute', top: 0, right: 0, width: 15, height: 15, background: '#fff1ed', borderBottomLeftRadius: 6 }} />
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16182a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <div style={{ position: 'absolute', top: 0, right: 0, width: isMobile ? 11 : 15, height: isMobile ? 11 : 15, background: '#fff1ed', borderBottomLeftRadius: 6 }} />
+                <svg width={isMobile ? 16 : 20} height={isMobile ? 16 : 20} viewBox="0 0 24 24" fill="none" stroke="#16182a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
                   <polyline points="14 2 14 8 20 8" />
                 </svg>
               </div>
             </div>
-            <span style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: 40, fontWeight: 800, letterSpacing: '-0.04em', color: '#16182a', lineHeight: 1 }}>
+            <span style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: isMobile ? 30 : 40, fontWeight: 800, letterSpacing: '-0.04em', color: '#16182a', lineHeight: 1 }}>
               DocuSnap
             </span>
           </div>
 
           {/* Headline */}
           <h1 style={{
-            margin: '72px 0 0',
+            margin: isMobile ? '36px 0 0' : '72px 0 0',
             maxWidth: 520,
             fontFamily: '"Plus Jakarta Sans", sans-serif',
-            fontSize: 'clamp(48px, 5.5vw, 76px)',
+            fontSize: isMobile ? '44px' : 'clamp(48px, 5.5vw, 76px)',
             lineHeight: 1.06,
             letterSpacing: '-0.05em',
             fontWeight: 800,
@@ -99,11 +124,11 @@ export function Hero({ onGetStarted }) {
 
           {/* Subtitle */}
           <p style={{
-            marginTop: 28,
+            marginTop: 24,
             maxWidth: 520,
             fontFamily: '"Plus Jakarta Sans", sans-serif',
-            fontSize: 20,
-            lineHeight: 1.5,
+            fontSize: isMobile ? 16 : 20,
+            lineHeight: 1.55,
             letterSpacing: '-0.02em',
             color: '#5a6080',
           }}>
@@ -111,7 +136,7 @@ export function Hero({ onGetStarted }) {
           </p>
 
           {/* Feature pills */}
-          <div style={{ marginTop: 40, display: 'flex', gap: 16 }}>
+          <div style={{ marginTop: 36, display: 'flex', flexWrap: 'wrap', gap: 10 }}>
             {[
               { icon: '🎁', label: 'Free forever', bg: '#e6f9f3', color: '#00b87c' },
               { icon: '🔒', label: 'Private', bg: '#eef1ff', color: '#3b5bfc' },
@@ -121,7 +146,7 @@ export function Hero({ onGetStarted }) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
-                padding: '10px 18px',
+                padding: '9px 16px',
                 background: bg,
                 borderRadius: 999,
                 fontFamily: '"Plus Jakarta Sans", sans-serif',
@@ -138,9 +163,10 @@ export function Hero({ onGetStarted }) {
           <button
             onClick={onGetStarted}
             style={{
-              marginTop: 40,
+              marginTop: 36,
               display: 'inline-flex',
               alignItems: 'center',
+              justifyContent: 'center',
               gap: 10,
               padding: '16px 32px',
               background: '#e8440a',
@@ -153,6 +179,7 @@ export function Hero({ onGetStarted }) {
               fontWeight: 700,
               letterSpacing: '-0.01em',
               boxShadow: '0 12px 28px rgba(232,68,10,0.28)',
+              width: isMobile ? '100%' : 'auto',
             }}
           >
             Start converting — it's free
@@ -160,50 +187,88 @@ export function Hero({ onGetStarted }) {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </button>
+
+          {/* Privacy card — inline on mobile */}
+          {isMobile && (
+            <div style={{
+              marginTop: 28,
+              borderRadius: 16,
+              border: '1.5px solid #edf0f7',
+              background: '#fafbff',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 14,
+              padding: '14px 18px',
+              boxShadow: '0 8px 24px rgba(22,24,42,0.06)',
+            }}>
+              <div style={{
+                flexShrink: 0,
+                width: 40,
+                height: 40,
+                borderRadius: 12,
+                background: 'linear-gradient(135deg, #e8440a, #b83208)',
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 18,
+              }}>✓</div>
+              <div>
+                <div style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: 14, fontWeight: 700, color: '#16182a', letterSpacing: '-0.02em' }}>
+                  Your files never leave your device.
+                </div>
+                <div style={{ marginTop: 2, fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: 13, color: '#5a6080' }}>
+                  100% private · 100% secure
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* ── Right graphic ── */}
-        <Graphic />
+        {/* ── Right graphic (desktop only) ── */}
+        {!isMobile && <Graphic />}
       </div>
 
-      {/* Toast */}
-      <div style={{
-        position: 'absolute',
-        bottom: 32,
-        left: '48%',
-        width: 460,
-        borderRadius: 18,
-        border: '1.5px solid #edf0f7',
-        background: 'rgba(255,255,255,0.92)',
-        backdropFilter: 'blur(12px)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 18,
-        padding: '16px 24px',
-        boxShadow: '0 16px 40px rgba(22,24,42,0.08)',
-        zIndex: 10,
-      }}>
+      {/* Toast (desktop only) */}
+      {!isMobile && (
         <div style={{
-          flexShrink: 0,
-          width: 48,
-          height: 48,
-          borderRadius: 14,
-          background: 'linear-gradient(135deg, #e8440a, #b83208)',
-          color: 'white',
+          position: 'absolute',
+          bottom: 32,
+          left: '48%',
+          width: 460,
+          borderRadius: 18,
+          border: '1.5px solid #edf0f7',
+          background: 'rgba(255,255,255,0.92)',
+          backdropFilter: 'blur(12px)',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 22,
-        }}>✓</div>
-        <div>
-          <div style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 700, color: '#16182a', letterSpacing: '-0.02em' }}>
-            Your files never leave your device.
-          </div>
-          <div style={{ marginTop: 2, fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: 14, color: '#5a6080' }}>
-            100% private · 100% secure
+          gap: 18,
+          padding: '16px 24px',
+          boxShadow: '0 16px 40px rgba(22,24,42,0.08)',
+          zIndex: 10,
+        }}>
+          <div style={{
+            flexShrink: 0,
+            width: 48,
+            height: 48,
+            borderRadius: 14,
+            background: 'linear-gradient(135deg, #e8440a, #b83208)',
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 22,
+          }}>✓</div>
+          <div>
+            <div style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: 16, fontWeight: 700, color: '#16182a', letterSpacing: '-0.02em' }}>
+              Your files never leave your device.
+            </div>
+            <div style={{ marginTop: 2, fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: 14, color: '#5a6080' }}>
+              100% private · 100% secure
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   )
 }
@@ -224,7 +289,6 @@ function Graphic() {
       borderRadius: 18,
       boxShadow: '0 24px 52px rgba(22,24,42,0.10)',
     }}>
-      {/* Fold */}
       <div style={{
         position: 'absolute',
         right: 0,
@@ -237,7 +301,6 @@ function Graphic() {
         borderBottomLeftRadius: 16,
         clipPath: 'polygon(0 0, 100% 100%, 100% 0)',
       }} />
-      {/* PDF label */}
       <div style={{
         position: 'absolute',
         top: 38,
@@ -251,12 +314,10 @@ function Graphic() {
         borderRadius: 8,
         boxShadow: '0 10px 22px rgba(232,68,10,0.24)',
       }}>PDF</div>
-      {/* Content lines */}
       <div style={{ padding: '116px 28px 0' }}>
         {[100, 100, 75].map((w, i) => (
           <div key={i} style={{ height: 7, borderRadius: 999, background: '#e2e4ef', marginBottom: 12, width: `${w}%` }} />
         ))}
-        {/* Image placeholder */}
         <div style={{ height: 108, borderRadius: 10, background: '#f5f6fa', margin: '22px 0 20px', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', width: 24, height: 24, borderRadius: '50%', background: '#e2e4ef', left: 28, top: 26 }} />
           <div style={{ position: 'absolute', width: 160, height: 100, background: 'linear-gradient(135deg, #e2e4ef, #c8cad8)', bottom: -55, left: 40, transform: 'rotate(45deg)', borderRadius: 12 }} />
@@ -324,7 +385,6 @@ function Graphic() {
       boxShadow: '0 18px 40px rgba(22,24,42,0.09)',
       overflow: 'hidden',
     }}>
-      {/* Format badge */}
       <div style={{
         position: 'absolute',
         top: 14,
@@ -340,16 +400,13 @@ function Graphic() {
         boxShadow: '0 6px 14px rgba(15,23,42,0.14)',
       }}>{label}</div>
 
-      {/* Thumbnail */}
       <div style={{
         height: 108,
         marginTop: 36,
         borderRadius: 8,
         overflow: 'hidden',
         position: 'relative',
-        background: thumb === 'checker'
-          ? undefined
-          : 'linear-gradient(#bae6fd, #7dd3fc)',
+        background: thumb === 'checker' ? undefined : 'linear-gradient(#bae6fd, #7dd3fc)',
         ...(thumb === 'checker' ? {
           backgroundImage: 'linear-gradient(45deg, #eef1ff 25%, transparent 25%), linear-gradient(-45deg, #eef1ff 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #eef1ff 75%), linear-gradient(-45deg, transparent 75%, #eef1ff 75%)',
           backgroundSize: '22px 22px',
@@ -380,7 +437,6 @@ function Graphic() {
             ))}
           </>
         )}
-        {/* Page number badge */}
         <div style={{ position: 'absolute', right: 6, bottom: 6, width: 40, height: 40, background: 'white', borderRadius: '12px 0 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, fontWeight: 800, fontFamily: '"Plus Jakarta Sans", sans-serif', color: '#16182a', zIndex: 5, boxShadow: '0 4px 14px rgba(22,24,42,0.12)' }}>{idx + 1}</div>
       </div>
     </div>
