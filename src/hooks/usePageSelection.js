@@ -49,8 +49,7 @@ export function usePageSelection(pdfFiles) {
 
   const getEffectiveSelection = useCallback((id, totalPages) => {
     const sel = selections[id]
-    if (!sel) return getAllPages(totalPages)
-    if (sel.length === 0) return getAllPages(totalPages)
+    if (sel == null) return getAllPages(totalPages)
     return sel
   }, [selections])
 
