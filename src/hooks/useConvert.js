@@ -1,7 +1,6 @@
 import { useState, useCallback } from 'react'
 import { renderPage } from '../utils/pageRenderer.js'
 import { canvasToBlob, getExtension } from '../utils/imageExporter.js'
-import { buildAndDownloadZip, downloadBlob } from '../utils/zipBuilder.js'
 import { buildFileName, sanitizeFolderName } from '../utils/fileNaming.js'
 
 export function useConvert() {
@@ -56,13 +55,6 @@ export function useConvert() {
       }
 
       setResultFiles(allBlobs)
-
-      if (downloadMode === 'zip' || allBlobs.length > 1) {
-        const zipName = readyFiles.length === 1 ? sanitizeFolderName(readyFiles[0].file.name) : 'converted-images'
-        await buildAndDownloadZip(allBlobs, zipName)
-      } else if (allBlobs.length === 1) {
-        downloadBlob(allBlobs[0].blob, allBlobs[0].fileName)
-      }
     } catch (err) {
       setError(err.message || 'Conversion failed.')
     } finally {
