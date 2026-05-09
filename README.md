@@ -4,7 +4,7 @@
 
 No uploads. No servers. No limits. Every conversion happens locally on your device.
 
-🔗 **[Live Demo → app-mu-olive-43.vercel.app](https://app-mu-olive-43.vercel.app)**
+🔗 **[Live Demo → docusnap-app.vercel.app](https://docusnap-app.vercel.app)**
 
 ![DocuSnap landing page](.github/preview.png)
 
