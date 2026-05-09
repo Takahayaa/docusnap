@@ -10,21 +10,49 @@ No uploads. No servers. No limits. Every conversion happens locally on your devi
 
 ## ✨ Features
 
-| Feature | Details |
-|---|---|
-| **Output formats** | JPG, PNG, TIFF |
-| **Resolution** | 72 / 150 / 300 / 600 DPI |
-| **Page selection** | All, odd, even, custom range (`1-3, 6, 10-12`) |
-| **Batch processing** | Multiple PDFs at once |
-| **Password-protected PDFs** | Unlock right in the browser |
-| **Background** | White, black, transparent (PNG), or custom color |
-| **Rotation** | Per-page override (0°, 90°, 180°, 270°) |
-| **Color mode** | RGB, Grayscale, Black & White |
-| **Resize output** | Custom width/height with aspect ratio lock |
-| **Crop margins** | Auto-trim white space |
-| **OCR enhancements** | Contrast boost, sharpen, noise removal |
-| **File naming** | Custom patterns — `{pdf-name}-page-{001}` |
-| **Download** | Individual files or ZIP archive |
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 📤 Input
+- Drop **any PDF** — single or batch
+- **Password-protected** files? Just unlock on the spot
+- Drag-and-drop or click to browse
+
+### 🎨 Output Formats
+- `JPG` — smaller files, perfect for photos
+- `PNG` — lossless, sharp text, transparency support
+- `TIFF` — archival & print quality with LZW/ZIP compression
+
+### 🖼️ Resolution & Scale
+- **72 · 150 · 300 · 600 DPI** — from web to print-ready
+- 1× · 2× · 3× output scale
+- JPG quality slider (60–100%)
+
+</td>
+<td width="50%" valign="top">
+
+### 📋 Page Control
+- Select **all · odd · even** pages instantly
+- Custom range input → `1-3, 6, 10-12`
+- Visual thumbnail grid with lazy loading
+
+### 🛠️ Advanced Processing
+- 🌈 **Color mode** — RGB, Grayscale, or pure B&W
+- 🔄 **Rotation** — original or force 0° / 90° / 180° / 270°
+- 🎨 **Background** — white, black, transparent, or custom hex
+- ✂️ **Crop margins** — auto-trim surrounding whitespace
+- ↔️ **Resize** — set exact px dimensions, lock aspect ratio
+- 🔍 **OCR enhancements** — contrast boost, sharpen, noise removal
+
+### 💾 Export
+- **ZIP** download with organized subfolders per PDF
+- **Individual** file download (up to 10 files)
+- Custom filename patterns → `{pdf-name}-page-{001}.jpg`
+
+</td>
+</tr>
+</table>
 
 ---
 
