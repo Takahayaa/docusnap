@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface font-sans text-ink antialiased m-0;
+  }
+  #root {
+    @apply min-h-screen;
+  }
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-ink text-canvas font-semibold text-sm rounded-full transition-all hover:bg-ink-deep disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-brand {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand text-canvas font-semibold text-sm rounded-full transition-all hover:bg-brand-dark disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-canvas text-ink font-medium text-sm rounded-full border border-hairline transition-all hover:border-stone;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-slate font-medium text-sm rounded-full border border-hairline transition-all hover:border-stone hover:text-ink;
+  }
+  .card {
+    @apply bg-canvas rounded-2xl border border-hairline-soft;
+    box-shadow: rgba(22, 24, 42, 0.06) 0px 4px 16px 0px;
+  }
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest text-stone mb-3;
+  }
+  .pill-toggle {
+    @apply px-4 py-2 text-sm font-medium rounded-full border transition-all;
+  }
+  .pill-toggle-active {
+    @apply bg-ink text-canvas border-ink;
+  }
+  .pill-toggle-inactive {
+    @apply bg-canvas text-slate border-hairline hover:border-stone hover:text-ink;
+  }
+}
