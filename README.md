@@ -4,6 +4,8 @@
 
 No uploads. No servers. No limits. Every conversion happens locally on your device.
 
+![DocuSnap landing page](.github/preview.png)
+
 ---
 
 ## ✨ Features
